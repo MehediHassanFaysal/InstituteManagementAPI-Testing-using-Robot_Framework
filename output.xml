@@ -1,0 +1,3021 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.0.2 (Python 3.10.5 on win32)" generated="20230204 18:58:12.040" rpa="false" schemaversion="3">
+<suite id="s1" name="InstituteManagementAPI" source="J:\SQA Concepts\Rest API Testing Using Robot Framework in Python\Projects\InstituteManagementAPI">
+<suite id="s1-s1" name="InstituteManagementAPI Automation TCs" source="J:\SQA Concepts\Rest API Testing Using Robot Framework in Python\Projects\InstituteManagementAPI\InstituteManagementAPI_Automation_TCs">
+<suite id="s1-s1-s1" name="TCs" source="J:\SQA Concepts\Rest API Testing Using Robot Framework in Python\Projects\InstituteManagementAPI\InstituteManagementAPI_Automation_TCs\TCs.robot">
+<test id="s1-s1-s1-t1" name="TC1: Register a new student using valid credentials (POST)" line="61">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:12.283" level="INFO">Creating Session using : alias=mysession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:12.283" endtime="20230204 18:58:12.283"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{body}</var>
+<arg>f_name=Faysal</arg>
+<arg>l_name=Sarder</arg>
+<arg>gender=male</arg>
+<arg>age=24</arg>
+<arg>mobile_no=01797651089</arg>
+<arg>email=faysal001@gmail.com</arg>
+<arg>password=12Abc#12</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:12.283" level="INFO">&amp;{body} = { f_name=Faysal | l_name=Sarder | gender=male | age=24 | mobile_no=01797651089 | email=faysal001@gmail.com | password=12Abc#12 }</msg>
+<status status="PASS" starttime="20230204 18:58:12.283" endtime="20230204 18:58:12.283"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:12.283" level="INFO">&amp;{header} = { Content-Type=application/json }</msg>
+<status status="PASS" starttime="20230204 18:58:12.283" endtime="20230204 18:58:12.283"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${relative_uri_tc1}</arg>
+<arg>json=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:14.200" level="INFO">POST Request : url=http://127.0.0.1:8000/api/student_register 
+ path_url=/api/student_register 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '155'} 
+ body=b'{"f_name": "Faysal", "l_name": "Sarder", "gender": "male", "age": "24", "mobile_no": "01797651089", "email": "faysal001@gmail.com", "password": "12Abc#12"}' 
+ </msg>
+<msg timestamp="20230204 18:58:14.200" level="INFO">POST Response : url=http://127.0.0.1:8000/api/student_register 
+ status=201, reason=Created 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:14 GMT, Sat, 04 Feb 2023 12:58:14 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '59', 'Access-Control-Allow-Origin': '*'} 
+ body={"message":"Registration successfully","student information":{"f_name":"Faysal","l_name":"Sarder","age":"24","mobile_no":"01797651089","email":"faysal001@gmail.com","password":"$2y$10$51BtRUeE7o6Dq7xvnGKNaeynvKrnqBiyqir\/iT8MrkgOsKrbuP1Ci","gender":"male","updated_at":"2023-02-04T12:58:14.000000Z","created_at":"2023-02-04T12:58:14.000000Z","id":2}} 
+ </msg>
+<msg timestamp="20230204 18:58:14.200" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:12.283" endtime="20230204 18:58:14.200"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:14.200" endtime="20230204 18:58:14.200"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:14.214" endtime="20230204 18:58:14.214"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:14.214" endtime="20230204 18:58:14.214"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:14.214" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:14.214" endtime="20230204 18:58:14.214"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${contentType}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:14.214" level="INFO">${contentType} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:14.214" endtime="20230204 18:58:14.214"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${contentType}</arg>
+<arg>application/json</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20230204 18:58:14.214" endtime="20230204 18:58:14.214"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:14.214" level="INFO">${res_body} = {"message":"Registration successfully","student information":{"f_name":"Faysal","l_name":"Sarder","age":"24","mobile_no":"01797651089","email":"faysal001@gmail.com","password":"$2y$10$51BtRUeE7o6Dq7xv...</msg>
+<status status="PASS" starttime="20230204 18:58:14.214" endtime="20230204 18:58:14.214"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>Registration successfully</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20230204 18:58:14.214" endtime="20230204 18:58:14.214"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>Faysal</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20230204 18:58:14.214" endtime="20230204 18:58:14.214"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${student_email}</var>
+<arg>${response.json()}</arg>
+<arg>["student information"].email</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:14.261" level="INFO">${student_email} = ['faysal001@gmail.com']</msg>
+<status status="PASS" starttime="20230204 18:58:14.214" endtime="20230204 18:58:14.261"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${emailFromList}</var>
+<arg>${student_email}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:14.261" level="INFO">${emailFromList} = faysal001@gmail.com</msg>
+<status status="PASS" starttime="20230204 18:58:14.261" endtime="20230204 18:58:14.261"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${emailFromList}</arg>
+<arg>faysal001@gmail.com</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:14.261" endtime="20230204 18:58:14.261"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:12.283" endtime="20230204 18:58:14.261"/>
+</test>
+<test id="s1-s1-s1-t2" name="TC2: View the list of registered students along with their details (GET)" line="85">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:14.261" level="INFO">Creating Session using : alias=mysession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:14.261" endtime="20230204 18:58:14.261"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${relative_uri_tc2}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:14.902" level="INFO">GET Request : url=http://127.0.0.1:8000/api/all_registered_students 
+ path_url=/api/all_registered_students 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230204 18:58:14.902" level="INFO">GET Response : url=http://127.0.0.1:8000/api/all_registered_students 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:14 GMT, Sat, 04 Feb 2023 12:58:14 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '58', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"List of all students.","List":[{"id":1,"f_name":"Ahmed","l_name":"nabil","gender":"Male","age":25,"mobile_no":"01534062340","email":"a23@gmail.com","password":"$2y$10$5dXoo1m\/MGSW6MoQ.TutS..fmyCkv8apNewt4NBy6RQW4.yAG4SOO","created_at":"2023-02-04 12:34:43","updated_at":"2023-02-04 12:34:43"},{"id":2,"f_name":"Faysal","l_name":"Sarder","gender":"male","age":24,"mobile_no":"01797651089","email":"faysal001@gmail.com","password":"$2y$10$51BtRUeE7o6Dq7xvnGKNaeynvKrnqBiyqir\/iT8MrkgOsKrbuP1Ci","created_at":"2023-02-04 12:58:14","updated_at":"2023-02-04 12:58:14"}],"Success":true} 
+ </msg>
+<msg timestamp="20230204 18:58:14.902" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:14.261" endtime="20230204 18:58:14.902"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:14.902" endtime="20230204 18:58:14.902"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:14.902" endtime="20230204 18:58:14.902"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:14.902" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:14.902" endtime="20230204 18:58:14.902"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${contentType}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:14.902" level="INFO">${contentType} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:14.902" endtime="20230204 18:58:14.902"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${contentType}</arg>
+<arg>application/json</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:14.902" endtime="20230204 18:58:14.902"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:14.902" level="INFO">${res_body} = {"Message":"List of all students.","List":[{"id":1,"f_name":"Ahmed","l_name":"nabil","gender":"Male","age":25,"mobile_no":"01534062340","email":"a23@gmail.com","password":"$2y$10$5dXoo1m\/MGSW6MoQ.Tut...</msg>
+<status status="PASS" starttime="20230204 18:58:14.902" endtime="20230204 18:58:14.902"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>List of all students.</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20230204 18:58:14.902" endtime="20230204 18:58:14.902"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>Faysal</arg>
+<arg>Sarder</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20230204 18:58:14.902" endtime="20230204 18:58:14.902"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${student_mobileNum}</var>
+<arg>${response.json()}</arg>
+<arg>$.List[1].mobile_no</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:14.930" level="INFO">${student_mobileNum} = ['01797651089']</msg>
+<status status="PASS" starttime="20230204 18:58:14.902" endtime="20230204 18:58:14.930"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${mobileNumFromList}</var>
+<arg>${student_mobileNum}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:14.930" level="INFO">${mobileNumFromList} = 01797651089</msg>
+<status status="PASS" starttime="20230204 18:58:14.930" endtime="20230204 18:58:14.930"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${mobileNumFromList}</arg>
+<arg>01797651089</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:14.930" endtime="20230204 18:58:14.930"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:14.261" endtime="20230204 18:58:14.930"/>
+</test>
+<test id="s1-s1-s1-t3" name="TC3: Return the detail's of a student by student id (GET)" line="112">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:14.930" level="INFO">Creating Session using : alias=mysession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:14.930" endtime="20230204 18:58:14.930"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${relative_uri_tc3}${query_param_tc3}${param}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:15.424" level="INFO">GET Request : url=http://127.0.0.1:8000/api/find/student?id=2 
+ path_url=/api/find/student?id=2 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230204 18:58:15.424" level="INFO">GET Response : url=http://127.0.0.1:8000/api/find/student?id=2 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:15 GMT, Sat, 04 Feb 2023 12:58:15 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '57', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"Successful. Student ID: 2.","Student details":[{"id":2,"f_name":"Faysal","l_name":"Sarder","gender":"male","age":24,"email":"faysal001@gmail.com","mobile_no":"01797651089"}],"Schedules":[],"Student ID":2,"Success":true} 
+ </msg>
+<msg timestamp="20230204 18:58:15.425" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:14.930" endtime="20230204 18:58:15.425"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:15.425" endtime="20230204 18:58:15.427"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:15.428" endtime="20230204 18:58:15.430"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:15.430" endtime="20230204 18:58:15.431"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:15.432" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:15.432" endtime="20230204 18:58:15.432"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${header_elements}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<arg>X-Powered-By</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:15.434" level="INFO">${header_elements} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:15.433" endtime="20230204 18:58:15.434"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${header_elements}</arg>
+<arg>application/json</arg>
+<arg>PHP/8.2.0</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:15.434" endtime="20230204 18:58:15.434"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${mobile_number}</var>
+<arg>${response.json()}</arg>
+<arg>["Student details"][0].mobile_no</arg>
+<arg>["Student details"][0].l_name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:15.457" level="INFO">${mobile_number} = ['01797651089']</msg>
+<status status="PASS" starttime="20230204 18:58:15.435" endtime="20230204 18:58:15.457"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${mobileNumr_fromList}</var>
+<arg>${mobile_number}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:15.458" level="INFO">${mobileNumr_fromList} = 01797651089</msg>
+<status status="PASS" starttime="20230204 18:58:15.458" endtime="20230204 18:58:15.458"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${mobileNumr_fromList}</arg>
+<arg>01797651089</arg>
+<arg>Faysal</arg>
+<arg>true</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:15.459" endtime="20230204 18:58:15.459"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:14.930" endtime="20230204 18:58:15.460"/>
+</test>
+<test id="s1-s1-s1-t4" name="TC4: Update student information by student id (PUT)" line="130">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mySession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:15.462" level="INFO">Creating Session using : alias=mySession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:15.462" endtime="20230204 18:58:15.462"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{body}</var>
+<arg>f_name=Faysal</arg>
+<arg>l_name=Ahmed</arg>
+<arg>gender=male</arg>
+<arg>age=24</arg>
+<arg>mobile_no=01521493889</arg>
+<arg>email=ahmed123@gmail.com</arg>
+<arg>password=12aBc#12</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:15.463" level="INFO">&amp;{body} = { f_name=Faysal | l_name=Ahmed | gender=male | age=24 | mobile_no=01521493889 | email=ahmed123@gmail.com | password=12aBc#12 }</msg>
+<status status="PASS" starttime="20230204 18:58:15.463" endtime="20230204 18:58:15.463"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{headers}</var>
+<arg>Content-Type=application/json</arg>
+<arg>Cache-Control=no-cache, private</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:15.464" level="INFO">&amp;{headers} = { Content-Type=application/json | Cache-Control=no-cache, private }</msg>
+<status status="PASS" starttime="20230204 18:58:15.463" endtime="20230204 18:58:15.464"/>
+</kw>
+<kw name="PUT On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mySession</arg>
+<arg>${relative_uri_tc4}${param}</arg>
+<arg>json=&amp;{body}</arg>
+<arg>headers=&amp;{headers}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:15.803" level="INFO">PUT Request : url=http://127.0.0.1:8000/api/update_student_info/2 
+ path_url=/api/update_student_info/2 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Cache-Control': 'no-cache, private', 'Content-Length': '153'} 
+ body=b'{"f_name": "Faysal", "l_name": "Ahmed", "gender": "male", "age": "24", "mobile_no": "01521493889", "email": "ahmed123@gmail.com", "password": "12aBc#12"}' 
+ </msg>
+<msg timestamp="20230204 18:58:15.803" level="INFO">PUT Response : url=http://127.0.0.1:8000/api/update_student_info/2 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:15 GMT, Sat, 04 Feb 2023 12:58:15 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '56', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"Student info. has been updated successfully","Success":true} 
+ </msg>
+<msg timestamp="20230204 18:58:15.803" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:15.464" endtime="20230204 18:58:15.803"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:15.803" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:15.803" endtime="20230204 18:58:15.803"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${contentType}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:15.809" level="INFO">${contentType} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:15.803" endtime="20230204 18:58:15.809"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${contentType}</arg>
+<arg>application/json</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:15.809" endtime="20230204 18:58:15.809"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${res_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:15.809" level="INFO">${res_body} = {"Message":"Student info. has been updated successfully","Success":true}</msg>
+<status status="PASS" starttime="20230204 18:58:15.809" endtime="20230204 18:58:15.809"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${res_body}</arg>
+<arg>Student info. has been updated successfully</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20230204 18:58:15.809" endtime="20230204 18:58:15.809"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:15.461" endtime="20230204 18:58:15.809"/>
+</test>
+<test id="s1-s1-s1-t5" name="TC5: Update specific information of a student by student id using patch method (PATCH)" line="144">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mySession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:15.809" level="INFO">Creating Session using : alias=mySession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:15.809" endtime="20230204 18:58:15.809"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{body}</var>
+<arg>f_name=Faysal</arg>
+<arg>l_name=Sarder</arg>
+<arg>age=23</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:15.809" level="INFO">&amp;{body} = { f_name=Faysal | l_name=Sarder | age=23 }</msg>
+<status status="PASS" starttime="20230204 18:58:15.809" endtime="20230204 18:58:15.809"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{headers}</var>
+<arg>Content-Type=application/json</arg>
+<arg>Cache-Control=no-cache, private</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:15.809" level="INFO">&amp;{headers} = { Content-Type=application/json | Cache-Control=no-cache, private }</msg>
+<status status="PASS" starttime="20230204 18:58:15.809" endtime="20230204 18:58:15.809"/>
+</kw>
+<kw name="PATCH On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mySession</arg>
+<arg>${relative_uri_tc5}${param}</arg>
+<arg>json=&amp;{body}</arg>
+<arg>headers=&amp;{headers}</arg>
+<doc>Sends a PATCH request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:16.050" level="INFO">PATCH Request : url=http://127.0.0.1:8000/api/partially/update/student_info/2 
+ path_url=/api/partially/update/student_info/2 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Cache-Control': 'no-cache, private', 'Content-Length': '53'} 
+ body=b'{"f_name": "Faysal", "l_name": "Sarder", "age": "23"}' 
+ </msg>
+<msg timestamp="20230204 18:58:16.050" level="INFO">PATCH Response : url=http://127.0.0.1:8000/api/partially/update/student_info/2 
+ status=202, reason=Accepted 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:16 GMT, Sat, 04 Feb 2023 12:58:16 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '55', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"Student info. has been updated successfully","Success":true} 
+ </msg>
+<msg timestamp="20230204 18:58:16.050" level="INFO">${response} = &lt;Response [202]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:15.809" endtime="20230204 18:58:16.050"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>202</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:16.050" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:16.050" endtime="20230204 18:58:16.050"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${contentType}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:16.050" level="INFO">${contentType} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:16.050" endtime="20230204 18:58:16.050"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${contentType}</arg>
+<arg>application/json</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:16.050" endtime="20230204 18:58:16.050"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${resp_body}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:16.050" level="INFO">${resp_body} = {"Message":"Student info. has been updated successfully","Success":true}</msg>
+<status status="PASS" starttime="20230204 18:58:16.050" endtime="20230204 18:58:16.050"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${response_body}</var>
+<arg>${resp_body}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:16.050" level="INFO">${response_body} = {"Message":"Student info. has been updated successfully","Success":true}</msg>
+<status status="PASS" starttime="20230204 18:58:16.050" endtime="20230204 18:58:16.050"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${response_body}</arg>
+<arg>Student info. has been updated successfully</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20230204 18:58:16.050" endtime="20230204 18:58:16.050"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${response_body}</arg>
+<arg>true</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20230204 18:58:16.050" endtime="20230204 18:58:16.050"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:15.809" endtime="20230204 18:58:16.066"/>
+</test>
+<test id="s1-s1-s1-t6" name="TC6: Delete a particular student anlong with activities by student id (DELETE)" line="160">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>my_session</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:16.066" level="INFO">Creating Session using : alias=my_session, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:16.066" endtime="20230204 18:58:16.066"/>
+</kw>
+<kw name="DELETE On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>my_session</arg>
+<arg>${relative_uri_tc6}${param}</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:16.240" level="INFO">DELETE Request : url=http://127.0.0.1:8000/api/delete_student/2 
+ path_url=/api/delete_student/2 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20230204 18:58:16.240" level="INFO">DELETE Response : url=http://127.0.0.1:8000/api/delete_student/2 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:16 GMT, Sat, 04 Feb 2023 12:58:16 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '54', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"Student id - 2 has been deleted successfully."} 
+ </msg>
+<msg timestamp="20230204 18:58:16.240" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:16.066" endtime="20230204 18:58:16.240"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:16.240" endtime="20230204 18:58:16.240"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:16.240" endtime="20230204 18:58:16.240"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:16.240" endtime="20230204 18:58:16.247"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:16.248" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:16.247" endtime="20230204 18:58:16.248"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${header_elements}</var>
+<arg>${response.headers}</arg>
+<arg>Host</arg>
+<arg>Connection</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:16.250" level="INFO">${header_elements} = 127.0.0.1:8000</msg>
+<status status="PASS" starttime="20230204 18:58:16.248" endtime="20230204 18:58:16.250"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${header_elements}</arg>
+<arg>127.0.0.1:8000</arg>
+<arg>close</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:16.250" endtime="20230204 18:58:16.250"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${message}</var>
+<arg>${response.json()}</arg>
+<arg>$.Message</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:16.266" level="INFO">${message} = ['Student id - 2 has been deleted successfully.']</msg>
+<status status="PASS" starttime="20230204 18:58:16.250" endtime="20230204 18:58:16.266"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${get_message}</var>
+<arg>${message}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:16.266" level="INFO">${get_message} = Student id - 2 has been deleted successfully.</msg>
+<status status="PASS" starttime="20230204 18:58:16.266" endtime="20230204 18:58:16.266"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${get_message}</arg>
+<arg>Student id - ${param} has been deleted successfully.</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:16.266" endtime="20230204 18:58:16.266"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:16.066" endtime="20230204 18:58:16.266"/>
+</test>
+<test id="s1-s1-s1-t7" name="TC7: Assign a new Instructor with valid credentials (POST REQUEST METHOD)" line="179">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mySession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:16.266" level="INFO">Creating Session using : alias=mySession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:16.266" endtime="20230204 18:58:16.266"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{payload}</var>
+<arg>insf_name=Nabil</arg>
+<arg>insl_name=Islam</arg>
+<arg>ins_gender=male</arg>
+<arg>ins_age=29</arg>
+<arg>ins_mobile_no=01731231456</arg>
+<arg>ins_email=nabil@gmail.com</arg>
+<arg>ins_password=123123123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:16.266" level="INFO">&amp;{payload} = { insf_name=Nabil | insl_name=Islam | ins_gender=male | ins_age=29 | ins_mobile_no=01731231456 | ins_email=nabil@gmail.com | ins_password=123123123 }</msg>
+<status status="PASS" starttime="20230204 18:58:16.266" endtime="20230204 18:58:16.266"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{contentType}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:16.266" level="INFO">&amp;{contentType} = { Content-Type=application/json }</msg>
+<status status="PASS" starttime="20230204 18:58:16.266" endtime="20230204 18:58:16.266"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mySession</arg>
+<arg>${relative_tc7}</arg>
+<arg>json=${payload}</arg>
+<arg>headers=${contentType}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:16.649" level="INFO">POST Request : url=http://127.0.0.1:8000/api/instructor_regis 
+ path_url=/api/instructor_regis 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '176'} 
+ body=b'{"insf_name": "Nabil", "insl_name": "Islam", "ins_gender": "male", "ins_age": "29", "ins_mobile_no": "01731231456", "ins_email": "nabil@gmail.com", "ins_password": "123123123"}' 
+ </msg>
+<msg timestamp="20230204 18:58:16.649" level="INFO">POST Response : url=http://127.0.0.1:8000/api/instructor_regis 
+ status=201, reason=Created 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:16 GMT, Sat, 04 Feb 2023 12:58:16 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '53', 'Access-Control-Allow-Origin': '*'} 
+ body={"message":"Assigned Instructor successfully","instructor information":{"insf_name":"Nabil","insl_name":"Islam","ins_age":"29","ins_mobile_no":"01731231456","ins_email":"nabil@gmail.com","ins_password":"$2y$10$GT1p4ly7N4cXvz2TXK2ttuemI.R1feoTjt8HdyF6ax0oQejyowD4i","ins_gender":"male","updated_at":"2023-02-04T12:58:16.000000Z","created_at":"2023-02-04T12:58:16.000000Z","id":2}} 
+ </msg>
+<msg timestamp="20230204 18:58:16.649" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:16.266" endtime="20230204 18:58:16.649"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:16.649" endtime="20230204 18:58:16.649"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:16.649" endtime="20230204 18:58:16.649"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:16.649" endtime="20230204 18:58:16.649"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:16.665" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:16.665" endtime="20230204 18:58:16.665"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${cont_type}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:16.665" level="INFO">${cont_type} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:16.665" endtime="20230204 18:58:16.665"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${cont_type}</arg>
+<arg>application/json</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:16.665" endtime="20230204 18:58:16.665"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${ins_mobileNo}</var>
+<arg>${response.json()}</arg>
+<arg>["instructor information"].ins_mobile_no</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:16.680" level="INFO">${ins_mobileNo} = ['01731231456']</msg>
+<status status="PASS" starttime="20230204 18:58:16.665" endtime="20230204 18:58:16.680"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${capture_mblNo}</var>
+<arg>${ins_mobileNo}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:16.680" level="INFO">${capture_mblNo} = 01731231456</msg>
+<status status="PASS" starttime="20230204 18:58:16.680" endtime="20230204 18:58:16.680"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${capture_mblNo}</arg>
+<arg>01731231456</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:16.680" endtime="20230204 18:58:16.680"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${message}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:16.680" level="INFO">${message} = {"message":"Assigned Instructor successfully","instructor information":{"insf_name":"Nabil","insl_name":"Islam","ins_age":"29","ins_mobile_no":"01731231456","ins_email":"nabil@gmail.com","ins_password...</msg>
+<status status="PASS" starttime="20230204 18:58:16.680" endtime="20230204 18:58:16.680"/>
+</kw>
+<kw name="Should Contain Any" library="BuiltIn">
+<arg>${message}</arg>
+<arg>Assigned Instructor successfully</arg>
+<doc>Fails if ``container`` does not contain any of the ``*items``.</doc>
+<status status="PASS" starttime="20230204 18:58:16.680" endtime="20230204 18:58:16.680"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:16.266" endtime="20230204 18:58:16.680"/>
+</test>
+<test id="s1-s1-s1-t8" name="TC8: Views of all registered Instructors along with their details (GET REQUEST METHOD)" line="205">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:16.696" level="INFO">Creating Session using : alias=mysession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:16.680" endtime="20230204 18:58:16.696"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${resp}</var>
+<arg>mysession</arg>
+<arg>${relative_tc8}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:16.879" level="INFO">GET Request : url=http://127.0.0.1:8000/api/all/registered/instructors 
+ path_url=/api/all/registered/instructors 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230204 18:58:16.879" level="INFO">GET Response : url=http://127.0.0.1:8000/api/all/registered/instructors 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:16 GMT, Sat, 04 Feb 2023 12:58:16 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '52', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"All Registered Instructors.","List":[{"id":1,"insf_name":"Tanvir","insl_name":"Taweb","ins_gender":"Male","ins_age":26,"ins_mobile_no":"01234512312","ins_email":"tanvir@gmail.com","ins_password":"$2y$10$P0I99m0kMJW38yoWLoI7kObr7LiCsX48G84dEXaXd2MjOlEnwGuO6","created_at":"2023-02-04 12:34:48","updated_at":"2023-02-04 12:34:48"},{"id":2,"insf_name":"Nabil","insl_name":"Islam","ins_gender":"male","ins_age":29,"ins_mobile_no":"01731231456","ins_email":"nabil@gmail.com","ins_password":"$2y$10$GT1p4ly7N4cXvz2TXK2ttuemI.R1feoTjt8HdyF6ax0oQejyowD4i","created_at":"2023-02-04 12:58:16","updated_at":"2023-02-04 12:58:16"}],"Success":true} 
+ </msg>
+<msg timestamp="20230204 18:58:16.879" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:16.696" endtime="20230204 18:58:16.879"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:16.879" endtime="20230204 18:58:16.879"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:16.879" endtime="20230204 18:58:16.894"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:16.894" endtime="20230204 18:58:16.894"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${sts_code}</var>
+<arg>${resp.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:16.894" level="INFO">${sts_code} = 200</msg>
+<status status="PASS" starttime="20230204 18:58:16.894" endtime="20230204 18:58:16.894"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${sts_code}</arg>
+<arg>200</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:16.894" endtime="20230204 18:58:16.894"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${inst_email}</var>
+<arg>${resp.json()}</arg>
+<arg>$.List[1].ins_email</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:16.910" level="INFO">${inst_email} = ['nabil@gmail.com']</msg>
+<status status="PASS" starttime="20230204 18:58:16.894" endtime="20230204 18:58:16.910"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${ins_emailAddr}</var>
+<arg>${inst_email}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:16.910" level="INFO">${ins_emailAddr} = nabil@gmail.com</msg>
+<status status="PASS" starttime="20230204 18:58:16.910" endtime="20230204 18:58:16.910"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${ins_emailAddr}</arg>
+<arg>nabil@gmail.com</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:16.910" endtime="20230204 18:58:16.910"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${header}</var>
+<arg>${resp.headers}</arg>
+<arg>Host</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:16.910" level="INFO">${header} = 127.0.0.1:8000</msg>
+<status status="PASS" starttime="20230204 18:58:16.910" endtime="20230204 18:58:16.910"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${xPowerBy}</var>
+<arg>${resp.headers}</arg>
+<arg>X-Powered-By</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:16.910" level="INFO">${xPowerBy} = PHP/8.2.0</msg>
+<status status="PASS" starttime="20230204 18:58:16.910" endtime="20230204 18:58:16.910"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${header}</arg>
+<arg>127.0.0.1:8000</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230204 18:58:16.910" endtime="20230204 18:58:16.910"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${xPowerBy}</arg>
+<arg>PHP/8.2.0</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:16.910" endtime="20230204 18:58:16.910"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:16.680" endtime="20230204 18:58:16.910"/>
+</test>
+<test id="s1-s1-s1-t9" name="TC9: Return the detail's of an Instructor by instructor id (GET REQUEST METHOD)" line="228">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:16.926" level="INFO">Creating Session using : alias=mysession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:16.926" endtime="20230204 18:58:16.926"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${resp}</var>
+<arg>mysession</arg>
+<arg>${relative_tc9}${relative_tc10}${ins_param}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:17.098" level="INFO">GET Request : url=http://127.0.0.1:8000/api/find/instructor?id=2 
+ path_url=/api/find/instructor?id=2 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230204 18:58:17.098" level="INFO">GET Response : url=http://127.0.0.1:8000/api/find/instructor?id=2 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:17 GMT, Sat, 04 Feb 2023 12:58:17 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '51', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"Successful. Instructor ID: 2.","Instructor details":[{"id":2,"insf_name":"Nabil","insl_name":"Islam","ins_gender":"male","ins_email":"nabil@gmail.com","ins_mobile_no":"01731231456"}],"List of course and their datetime":[],"Full schedules":[],"Instructor ID":2,"Success":true} 
+ </msg>
+<msg timestamp="20230204 18:58:17.098" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:16.926" endtime="20230204 18:58:17.098"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:17.098" endtime="20230204 18:58:17.106"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:17.106" endtime="20230204 18:58:17.106"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:17.106" endtime="20230204 18:58:17.106"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:17.106" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:17.106" endtime="20230204 18:58:17.106"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${contentType}</var>
+<arg>${resp.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:17.106" level="INFO">${contentType} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:17.106" endtime="20230204 18:58:17.106"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${contentType}</arg>
+<arg>application/json</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230204 18:58:17.106" endtime="20230204 18:58:17.106"/>
+</kw>
+<kw name="To Json" library="RequestsLibrary">
+<var>${body_elements}</var>
+<arg>${resp.content}</arg>
+<doc>*DEPRECATED* Please use ${resp.json()} instead. Have a look at the improved HTML output as pretty printing replacement.</doc>
+<msg timestamp="20230204 18:58:17.106" level="WARN">Keyword 'RequestsLibrary.To Json' is deprecated. Please use ${resp.json()} instead. Have a look at the improved HTML output as pretty printing replacement.</msg>
+<msg timestamp="20230204 18:58:17.114" level="INFO">To JSON using : content={"Message":"Successful. Instructor ID: 2.","Instructor details":[{"id":2,"insf_name":"Nabil","insl_name":"Islam","ins_gender":"male","ins_email":"nabil@gmail.com","ins_mobile_no":"01731231456"}],"List of course and their datetime":[],"Full schedules":[],"Instructor ID":2,"Success":true} </msg>
+<msg timestamp="20230204 18:58:17.114" level="INFO">To JSON using : pretty_print=False </msg>
+<msg timestamp="20230204 18:58:17.114" level="INFO">${body_elements} = {'Message': 'Successful. Instructor ID: 2.', 'Instructor details': [{'id': 2, 'insf_name': 'Nabil', 'insl_name': 'Islam', 'ins_gender': 'male', 'ins_email': 'nabil@gmail.com', 'ins_mobile_no': '017312...</msg>
+<status status="PASS" starttime="20230204 18:58:17.106" endtime="20230204 18:58:17.114"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${message}</var>
+<arg>${body_elements}</arg>
+<arg>$.Message</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:17.130" level="INFO">${message} = ['Successful. Instructor ID: 2.']</msg>
+<status status="PASS" starttime="20230204 18:58:17.114" endtime="20230204 18:58:17.130"/>
+</kw>
+<kw name="Convert To List" library="Collections">
+<var>${capt_message}</var>
+<arg>${message}</arg>
+<doc>Converts the given ``item`` to a Python ``list`` type.</doc>
+<msg timestamp="20230204 18:58:17.130" level="INFO">${capt_message} = ['Successful. Instructor ID: 2.']</msg>
+<status status="PASS" starttime="20230204 18:58:17.130" endtime="20230204 18:58:17.130"/>
+</kw>
+<kw name="List Should Contain Value" library="Collections">
+<arg>${capt_message}</arg>
+<arg>Successful. Instructor ID: ${ins_param}.</arg>
+<doc>Fails if the ``value`` is not found from ``list``.</doc>
+<status status="PASS" starttime="20230204 18:58:17.130" endtime="20230204 18:58:17.130"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:16.926" endtime="20230204 18:58:17.130"/>
+</test>
+<test id="s1-s1-s1-t10" name="TC10: Update Instructor information by Instructor id (PUT REQUEST METHOD)" line="248">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mySession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:17.130" level="INFO">Creating Session using : alias=mySession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:17.130" endtime="20230204 18:58:17.130"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{body}</var>
+<arg>insf_name=Nabil</arg>
+<arg>insl_name=Islam</arg>
+<arg>ins_gender=male</arg>
+<arg>ins_age=30</arg>
+<arg>ins_mobile_no=01731231466</arg>
+<arg>ins_email=nabilkkhan@gmail.com</arg>
+<arg>ins_password=123123</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:17.130" level="INFO">&amp;{body} = { insf_name=Nabil | insl_name=Islam | ins_gender=male | ins_age=30 | ins_mobile_no=01731231466 | ins_email=nabilkkhan@gmail.com | ins_password=123123 }</msg>
+<status status="PASS" starttime="20230204 18:58:17.130" endtime="20230204 18:58:17.130"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{contentType}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:17.145" level="INFO">&amp;{contentType} = { Content-Type=application/json }</msg>
+<status status="PASS" starttime="20230204 18:58:17.130" endtime="20230204 18:58:17.145"/>
+</kw>
+<kw name="PUT On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mySession</arg>
+<arg>${relative_tc11}${ins_param}</arg>
+<arg>json=${body}</arg>
+<arg>headers=${contentType}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:17.451" level="INFO">PUT Request : url=http://127.0.0.1:8000/api/update_instructor_info/2 
+ path_url=/api/update_instructor_info/2 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '178'} 
+ body=b'{"insf_name": "Nabil", "insl_name": "Islam", "ins_gender": "male", "ins_age": "30", "ins_mobile_no": "01731231466", "ins_email": "nabilkkhan@gmail.com", "ins_password": "123123"}' 
+ </msg>
+<msg timestamp="20230204 18:58:17.451" level="INFO">PUT Response : url=http://127.0.0.1:8000/api/update_instructor_info/2 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:17 GMT, Sat, 04 Feb 2023 12:58:17 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '50', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"Instructor Info. has been updated successfully","Success":true} 
+ </msg>
+<msg timestamp="20230204 18:58:17.451" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:17.145" endtime="20230204 18:58:17.451"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:17.451" endtime="20230204 18:58:17.451"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:17.466" endtime="20230204 18:58:17.466"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:17.466" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:17.466" endtime="20230204 18:58:17.466"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${cont_type}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:17.466" level="INFO">${cont_type} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:17.466" endtime="20230204 18:58:17.466"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${cont_type}</arg>
+<arg>application/json</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:17.466" endtime="20230204 18:58:17.466"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${message}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:17.466" level="INFO">${message} = {"Message":"Instructor Info. has been updated successfully","Success":true}</msg>
+<status status="PASS" starttime="20230204 18:58:17.466" endtime="20230204 18:58:17.466"/>
+</kw>
+<kw name="Should Contain Any" library="BuiltIn">
+<arg>${message}</arg>
+<arg>Instructor Info. has been updated successfully</arg>
+<doc>Fails if ``container`` does not contain any of the ``*items``.</doc>
+<status status="PASS" starttime="20230204 18:58:17.466" endtime="20230204 18:58:17.466"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:17.130" endtime="20230204 18:58:17.466"/>
+</test>
+<test id="s1-s1-s1-t11" name="TC11: Update specific records of an Instructor by Instructor id using patch method (PATCH REQUEST METHOD)" line="267">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mySession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:17.466" level="INFO">Creating Session using : alias=mySession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:17.466" endtime="20230204 18:58:17.466"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{request_payload}</var>
+<arg>insf_name=Tarique</arg>
+<arg>insl_name=Nabil</arg>
+<arg>ins_age=32</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:17.466" level="INFO">&amp;{request_payload} = { insf_name=Tarique | insl_name=Nabil | ins_age=32 }</msg>
+<status status="PASS" starttime="20230204 18:58:17.466" endtime="20230204 18:58:17.466"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{contentType}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:17.466" level="INFO">&amp;{contentType} = { Content-Type=application/json }</msg>
+<status status="PASS" starttime="20230204 18:58:17.466" endtime="20230204 18:58:17.466"/>
+</kw>
+<kw name="PATCH On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mySession</arg>
+<arg>${relative_tc12}${ins_param}</arg>
+<arg>json=${request_payload}</arg>
+<arg>headers=${contentType}</arg>
+<doc>Sends a PATCH request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:17.686" level="INFO">PATCH Request : url=http://127.0.0.1:8000/api/partially/update/instructor_info/2 
+ path_url=/api/partially/update/instructor_info/2 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '63'} 
+ body=b'{"insf_name": "Tarique", "insl_name": "Nabil", "ins_age": "32"}' 
+ </msg>
+<msg timestamp="20230204 18:58:17.686" level="INFO">PATCH Response : url=http://127.0.0.1:8000/api/partially/update/instructor_info/2 
+ status=202, reason=Accepted 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:17 GMT, Sat, 04 Feb 2023 12:58:17 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '49', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"Instructor info. has been updated partially.","Success":true,"a":"2"} 
+ </msg>
+<msg timestamp="20230204 18:58:17.686" level="INFO">${response} = &lt;Response [202]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:17.466" endtime="20230204 18:58:17.686"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:17.686" endtime="20230204 18:58:17.686"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:17.702" endtime="20230204 18:58:17.702"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>202</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:17.702" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:17.702" endtime="20230204 18:58:17.702"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${cont_type}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:17.702" level="INFO">${cont_type} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:17.702" endtime="20230204 18:58:17.702"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${cont_type}</arg>
+<arg>application/json</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:17.702" endtime="20230204 18:58:17.702"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${message}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:17.707" level="INFO">${message} = {"Message":"Instructor info. has been updated partially.","Success":true,"a":"2"}</msg>
+<status status="PASS" starttime="20230204 18:58:17.702" endtime="20230204 18:58:17.707"/>
+</kw>
+<kw name="Should Contain Any" library="BuiltIn">
+<arg>${message}</arg>
+<arg>Instructor info. has been updated partially.</arg>
+<doc>Fails if ``container`` does not contain any of the ``*items``.</doc>
+<status status="PASS" starttime="20230204 18:58:17.707" endtime="20230204 18:58:17.707"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${message}</arg>
+<arg>${ins_param}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20230204 18:58:17.707" endtime="20230204 18:58:17.707"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:17.466" endtime="20230204 18:58:17.707"/>
+</test>
+<test id="s1-s1-s1-t12" name="TC12: Delete Instructors by their id (DELETE REQUEST METHOD)" line="287">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>my_session</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:17.707" level="INFO">Creating Session using : alias=my_session, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:17.707" endtime="20230204 18:58:17.707"/>
+</kw>
+<kw name="DELETE On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>my_session</arg>
+<arg>${relative_tc13}${ins_param}</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:17.908" level="INFO">DELETE Request : url=http://127.0.0.1:8000/api/delete_instructor/2 
+ path_url=/api/delete_instructor/2 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20230204 18:58:17.908" level="INFO">DELETE Response : url=http://127.0.0.1:8000/api/delete_instructor/2 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:17 GMT, Sat, 04 Feb 2023 12:58:17 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '48', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"Instrutor -2 info. has been deleted successfully."} 
+ </msg>
+<msg timestamp="20230204 18:58:17.908" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:17.707" endtime="20230204 18:58:17.908"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:17.919" endtime="20230204 18:58:17.919"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:17.919" endtime="20230204 18:58:17.919"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:17.919" endtime="20230204 18:58:17.919"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:17.919" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:17.919" endtime="20230204 18:58:17.919"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${header_elements}</var>
+<arg>${response.headers}</arg>
+<arg>Host</arg>
+<arg>Connection</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:17.919" level="INFO">${header_elements} = 127.0.0.1:8000</msg>
+<status status="PASS" starttime="20230204 18:58:17.919" endtime="20230204 18:58:17.919"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${header_elements}</arg>
+<arg>127.0.0.1:8000</arg>
+<arg>close</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:17.919" endtime="20230204 18:58:17.919"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${message}</var>
+<arg>${response.json()}</arg>
+<arg>$.Message</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:17.934" level="INFO">${message} = ['Instrutor -2 info. has been deleted successfully.']</msg>
+<status status="PASS" starttime="20230204 18:58:17.919" endtime="20230204 18:58:17.934"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${get_message}</var>
+<arg>${message}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:17.934" level="INFO">${get_message} = Instrutor -2 info. has been deleted successfully.</msg>
+<status status="PASS" starttime="20230204 18:58:17.934" endtime="20230204 18:58:17.934"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${get_message}</arg>
+<arg>Instrutor -${ins_param} info. has been deleted successfully.</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:17.934" endtime="20230204 18:58:17.934"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:17.707" endtime="20230204 18:58:17.934"/>
+</test>
+<test id="s1-s1-s1-t13" name="TC13: Offer courses (POST HTTP REQUEST)" line="307">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:17.950" level="INFO">Creating Session using : alias=mysession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:17.934" endtime="20230204 18:58:17.950"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>course_name=API Testing Course 01</arg>
+<arg>course_hours=8 Hours</arg>
+<arg>dept=CSE</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:17.950" level="INFO">${body} = {'course_name': 'API Testing Course 01', 'course_hours': '8 Hours', 'dept': 'CSE'}</msg>
+<status status="PASS" starttime="20230204 18:58:17.950" endtime="20230204 18:58:17.950"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:17.950" level="INFO">${header} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20230204 18:58:17.950" endtime="20230204 18:58:17.950"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${relative_uri_14}</arg>
+<arg>json=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:18.169" level="INFO">POST Request : url=http://127.0.0.1:8000/api/assign_course 
+ path_url=/api/assign_course 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '82'} 
+ body=b'{"course_name": "API Testing Course 01", "course_hours": "8 Hours", "dept": "CSE"}' 
+ </msg>
+<msg timestamp="20230204 18:58:18.169" level="INFO">POST Response : url=http://127.0.0.1:8000/api/assign_course 
+ status=201, reason=Created 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:18 GMT, Sat, 04 Feb 2023 12:58:18 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '47', 'Access-Control-Allow-Origin': '*'} 
+ body={"message":"API Testing Course 01 course has been assigned successful.","course information":{"course_name":"API Testing Course 01","course_hours":"8 Hours","dept":"CSE","updated_at":"2023-02-04T12:58:18.000000Z","created_at":"2023-02-04T12:58:18.000000Z","id":2}} 
+ </msg>
+<msg timestamp="20230204 18:58:18.185" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:17.950" endtime="20230204 18:58:18.185"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:18.185" endtime="20230204 18:58:18.185"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:18.185" endtime="20230204 18:58:18.185"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:18.185" endtime="20230204 18:58:18.185"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:18.185" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:18.185" endtime="20230204 18:58:18.185"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${cont_type}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:18.185" level="INFO">${cont_type} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:18.185" endtime="20230204 18:58:18.185"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${cont_type}</arg>
+<arg>application/json</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:18.185" endtime="20230204 18:58:18.185"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${courseName}</var>
+<arg>${response.json()}</arg>
+<arg>$["course information"].course_name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:18.217" level="INFO">${courseName} = ['API Testing Course 01']</msg>
+<status status="PASS" starttime="20230204 18:58:18.185" endtime="20230204 18:58:18.217"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${capture_courseNm}</var>
+<arg>${courseName}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:18.217" level="INFO">${capture_courseNm} = API Testing Course 01</msg>
+<status status="PASS" starttime="20230204 18:58:18.217" endtime="20230204 18:58:18.217"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${capture_courseNm}</arg>
+<arg>API Testing Course 01</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:18.217" endtime="20230204 18:58:18.217"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${message}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:18.217" level="INFO">${message} = {"message":"API Testing Course 01 course has been assigned successful.","course information":{"course_name":"API Testing Course 01","course_hours":"8 Hours","dept":"CSE","updated_at":"2023-02-04T12:58...</msg>
+<status status="PASS" starttime="20230204 18:58:18.217" endtime="20230204 18:58:18.217"/>
+</kw>
+<kw name="Should Contain Any" library="BuiltIn">
+<arg>${message}</arg>
+<arg>${capture_courseNm} course has been assigned successful.</arg>
+<doc>Fails if ``container`` does not contain any of the ``*items``.</doc>
+<status status="PASS" starttime="20230204 18:58:18.217" endtime="20230204 18:58:18.217"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:17.934" endtime="20230204 18:58:18.217"/>
+</test>
+<test id="s1-s1-s1-t14" name="TC14: View the available offered courses (GET REQUEST METHOD)" line="331">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:18.217" level="INFO">Creating Session using : alias=mysession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:18.217" endtime="20230204 18:58:18.217"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${resp}</var>
+<arg>mysession</arg>
+<arg>${relative_uri_15}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:18.372" level="INFO">GET Request : url=http://127.0.0.1:8000/api/available_courses 
+ path_url=/api/available_courses 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230204 18:58:18.372" level="INFO">GET Response : url=http://127.0.0.1:8000/api/available_courses 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:18 GMT, Sat, 04 Feb 2023 12:58:18 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '46', 'Access-Control-Allow-Origin': '*'} 
+ body=[{"id":1,"course_name":"SQA Course 01","course_hours":"42 Hours","dept":"CSE","created_at":"2023-02-04 12:34:52","updated_at":"2023-02-04 12:34:52"},{"id":2,"course_name":"API Testing Course 01","course_hours":"8 Hours","dept":"CSE","created_at":"2023-02-04 12:58:18","updated_at":"2023-02-04 12:58:18"}] 
+ </msg>
+<msg timestamp="20230204 18:58:18.372" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:18.217" endtime="20230204 18:58:18.372"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:18.372" endtime="20230204 18:58:18.372"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:18.372" endtime="20230204 18:58:18.372"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:18.372" endtime="20230204 18:58:18.372"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${sts_code}</var>
+<arg>${resp.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:18.372" level="INFO">${sts_code} = 200</msg>
+<status status="PASS" starttime="20230204 18:58:18.372" endtime="20230204 18:58:18.372"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${sts_code}</arg>
+<arg>200</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:18.372" endtime="20230204 18:58:18.372"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${courseNm}</var>
+<arg>${resp.json()}</arg>
+<arg>$[1].course_name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:18.403" level="INFO">${courseNm} = ['API Testing Course 01']</msg>
+<status status="PASS" starttime="20230204 18:58:18.372" endtime="20230204 18:58:18.403"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${course_name}</var>
+<arg>${courseNm}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:18.403" level="INFO">${course_name} = API Testing Course 01</msg>
+<status status="PASS" starttime="20230204 18:58:18.403" endtime="20230204 18:58:18.403"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${course_name}</arg>
+<arg>API Testing Course 01</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:18.403" endtime="20230204 18:58:18.403"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${header}</var>
+<arg>${resp.headers}</arg>
+<arg>Host</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:18.409" level="INFO">${header} = 127.0.0.1:8000</msg>
+<status status="PASS" starttime="20230204 18:58:18.409" endtime="20230204 18:58:18.409"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${contentType}</var>
+<arg>${resp.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:18.409" level="INFO">${contentType} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:18.409" endtime="20230204 18:58:18.409"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${header}</arg>
+<arg>127.0.0.1:8000</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230204 18:58:18.409" endtime="20230204 18:58:18.409"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${contentType}</arg>
+<arg>application/json</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:18.409" endtime="20230204 18:58:18.409"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:18.217" endtime="20230204 18:58:18.409"/>
+</test>
+<test id="s1-s1-s1-t15" name="TC18: Assign subjects to a particular course (POST HTTP REQUEST)" line="354">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:18.409" level="INFO">Creating Session using : alias=mysession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:18.409" endtime="20230204 18:58:18.409"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>sub_name=Robot Framework</arg>
+<arg>course_id=${course_param}</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:18.409" level="INFO">${body} = {'sub_name': 'Robot Framework', 'course_id': '2'}</msg>
+<status status="PASS" starttime="20230204 18:58:18.409" endtime="20230204 18:58:18.409"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:18.409" level="INFO">${header} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20230204 18:58:18.409" endtime="20230204 18:58:18.409"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${relative_uri_20}</arg>
+<arg>json=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:18.609" level="INFO">POST Request : url=http://127.0.0.1:8000/api/assign_subject 
+ path_url=/api/assign_subject 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '49'} 
+ body=b'{"sub_name": "Robot Framework", "course_id": "2"}' 
+ </msg>
+<msg timestamp="20230204 18:58:18.609" level="INFO">POST Response : url=http://127.0.0.1:8000/api/assign_subject 
+ status=201, reason=Created 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:18 GMT, Sat, 04 Feb 2023 12:58:18 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '45', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"Subject Robot Framework has been assigned successful.","Subject information":{"sub_name":"Robot Framework","course_id":"2","updated_at":"2023-02-04T12:58:18.000000Z","created_at":"2023-02-04T12:58:18.000000Z","id":2},"Course information":{"id":2,"course_name":"API Testing Course 01","course_hours":"8 Hours","dept":"CSE","created_at":"2023-02-04T12:58:18.000000Z","updated_at":"2023-02-04T12:58:18.000000Z"},"Course id":"2","Success":true} 
+ </msg>
+<msg timestamp="20230204 18:58:18.609" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:18.409" endtime="20230204 18:58:18.609"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:18.609" endtime="20230204 18:58:18.609"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:18.609" endtime="20230204 18:58:18.609"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:18.609" endtime="20230204 18:58:18.609"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:18.624" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:18.609" endtime="20230204 18:58:18.624"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${cont_type}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:18.624" level="INFO">${cont_type} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:18.624" endtime="20230204 18:58:18.624"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${cont_type}</arg>
+<arg>application/json</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:18.624" endtime="20230204 18:58:18.624"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${subjName}</var>
+<arg>${response.json()}</arg>
+<arg>$["Subject information"].sub_name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:18.639" level="INFO">${subjName} = ['Robot Framework']</msg>
+<status status="PASS" starttime="20230204 18:58:18.624" endtime="20230204 18:58:18.639"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${capture_subjectNm}</var>
+<arg>${subjName}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:18.639" level="INFO">${capture_subjectNm} = Robot Framework</msg>
+<status status="PASS" starttime="20230204 18:58:18.639" endtime="20230204 18:58:18.639"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${capture_subjectNm}</arg>
+<arg>Robot Framework</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:18.639" endtime="20230204 18:58:18.639"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${message}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:18.639" level="INFO">${message} = {"Message":"Subject Robot Framework has been assigned successful.","Subject information":{"sub_name":"Robot Framework","course_id":"2","updated_at":"2023-02-04T12:58:18.000000Z","created_at":"2023-02-...</msg>
+<status status="PASS" starttime="20230204 18:58:18.639" endtime="20230204 18:58:18.639"/>
+</kw>
+<kw name="Should Contain Any" library="BuiltIn">
+<arg>${message}</arg>
+<arg>Subject ${capture_subjectNm} has been assigned successful.</arg>
+<doc>Fails if ``container`` does not contain any of the ``*items``.</doc>
+<status status="PASS" starttime="20230204 18:58:18.639" endtime="20230204 18:58:18.639"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${courseName}</var>
+<arg>${response.json()}</arg>
+<arg>$["Course information"].course_name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:18.671" level="INFO">${courseName} = ['API Testing Course 01']</msg>
+<status status="PASS" starttime="20230204 18:58:18.639" endtime="20230204 18:58:18.671"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${capture_courseNm}</var>
+<arg>${courseName}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:18.671" level="INFO">${capture_courseNm} = API Testing Course 01</msg>
+<status status="PASS" starttime="20230204 18:58:18.671" endtime="20230204 18:58:18.671"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${capture_courseNm}</arg>
+<arg>API Testing Course 01</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:18.671" endtime="20230204 18:58:18.671"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:18.409" endtime="20230204 18:58:18.671"/>
+</test>
+<test id="s1-s1-s1-t16" name="TC15: Search course &amp; return the detail's course by id (GET HTTP METHOD)" line="383">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:18.671" level="INFO">Creating Session using : alias=mysession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:18.671" endtime="20230204 18:58:18.671"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${resp}</var>
+<arg>mysession</arg>
+<arg>${relative_uri_16}${relative_uri_17}${course_param}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:18.829" level="INFO">GET Request : url=http://127.0.0.1:8000/api/specific_course?id=2 
+ path_url=/api/specific_course?id=2 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230204 18:58:18.829" level="INFO">GET Response : url=http://127.0.0.1:8000/api/specific_course?id=2 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:18 GMT, Sat, 04 Feb 2023 12:58:18 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '44', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"Search result:","Course Details":[{"id":2,"course_name":"API Testing Course 01","course_hours":"8 Hours","dept":"CSE","created_at":"2023-02-04T12:58:18.000000Z","updated_at":"2023-02-04T12:58:18.000000Z"}],"Subject offers under course":{"1":{"id":2,"sub_name":"Robot Framework","course_id":2,"created_at":"2023-02-04T12:58:18.000000Z","updated_at":"2023-02-04T12:58:18.000000Z"}},"Success":true} 
+ </msg>
+<msg timestamp="20230204 18:58:18.829" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:18.671" endtime="20230204 18:58:18.829"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:18.829" endtime="20230204 18:58:18.829"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:18.829" endtime="20230204 18:58:18.829"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:18.829" endtime="20230204 18:58:18.829"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:18.844" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:18.844" endtime="20230204 18:58:18.844"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${contentType}</var>
+<arg>${resp.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:18.844" level="INFO">${contentType} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:18.844" endtime="20230204 18:58:18.844"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${contentType}</arg>
+<arg>application/json</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230204 18:58:18.844" endtime="20230204 18:58:18.844"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${courseName}</var>
+<arg>${resp.json()}</arg>
+<arg>$["Course Details"][0].course_name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:18.860" level="INFO">${courseName} = ['API Testing Course 01']</msg>
+<status status="PASS" starttime="20230204 18:58:18.844" endtime="20230204 18:58:18.860"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${capture_courseNm}</var>
+<arg>${courseName}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:18.860" level="INFO">${capture_courseNm} = API Testing Course 01</msg>
+<status status="PASS" starttime="20230204 18:58:18.860" endtime="20230204 18:58:18.860"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${capture_courseNm}</arg>
+<arg>API Testing Course 01</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:18.860" endtime="20230204 18:58:18.860"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:18.671" endtime="20230204 18:58:18.860"/>
+</test>
+<test id="s1-s1-s1-t17" name="TC16: Update the existing course after course offer (POST HTTP REQUEST)" line="405">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mySession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:18.860" level="INFO">Creating Session using : alias=mySession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:18.860" endtime="20230204 18:58:18.860"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{body}</var>
+<arg>course_name=API Testing Autmation 01</arg>
+<arg>course_hours=10 Hours</arg>
+<arg>dept=CSE</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:18.860" level="INFO">&amp;{body} = { course_name=API Testing Autmation 01 | course_hours=10 Hours | dept=CSE }</msg>
+<status status="PASS" starttime="20230204 18:58:18.860" endtime="20230204 18:58:18.860"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{contentType}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:18.860" level="INFO">&amp;{contentType} = { Content-Type=application/json }</msg>
+<status status="PASS" starttime="20230204 18:58:18.860" endtime="20230204 18:58:18.860"/>
+</kw>
+<kw name="PUT On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mySession</arg>
+<arg>${relative_uri_18}${course_param}</arg>
+<arg>json=${body}</arg>
+<arg>headers=${contentType}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:19.033" level="INFO">PUT Request : url=http://127.0.0.1:8000/api/update_course_details/2 
+ path_url=/api/update_course_details/2 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '86'} 
+ body=b'{"course_name": "API Testing Autmation 01", "course_hours": "10 Hours", "dept": "CSE"}' 
+ </msg>
+<msg timestamp="20230204 18:58:19.033" level="INFO">PUT Response : url=http://127.0.0.1:8000/api/update_course_details/2 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:19 GMT, Sat, 04 Feb 2023 12:58:19 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '43', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"Course details updated successfully","Updated details of course id: ":"2"} 
+ </msg>
+<msg timestamp="20230204 18:58:19.033" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:18.876" endtime="20230204 18:58:19.033"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:19.033" endtime="20230204 18:58:19.033"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:19.033" endtime="20230204 18:58:19.033"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:19.033" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:19.033" endtime="20230204 18:58:19.033"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${cont_type}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:19.033" level="INFO">${cont_type} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:19.033" endtime="20230204 18:58:19.033"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${cont_type}</arg>
+<arg>application/json</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:19.033" endtime="20230204 18:58:19.033"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${message}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:19.033" level="INFO">${message} = {"Message":"Course details updated successfully","Updated details of course id: ":"2"}</msg>
+<status status="PASS" starttime="20230204 18:58:19.033" endtime="20230204 18:58:19.033"/>
+</kw>
+<kw name="Should Contain Any" library="BuiltIn">
+<arg>${message}</arg>
+<arg>Course details updated successfully</arg>
+<doc>Fails if ``container`` does not contain any of the ``*items``.</doc>
+<status status="PASS" starttime="20230204 18:58:19.033" endtime="20230204 18:58:19.033"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${message}</arg>
+<arg>${course_param}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20230204 18:58:19.033" endtime="20230204 18:58:19.033"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:18.860" endtime="20230204 18:58:19.033"/>
+</test>
+<test id="s1-s1-s1-t18" name="TC17: Delete courses by their id (DELETE HTTP REQUEST)" line="425">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:19.033" level="INFO">Creating Session using : alias=mysession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:19.033" endtime="20230204 18:58:19.033"/>
+</kw>
+<kw name="DELETE On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${relative_uri_19}${course_param}</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:19.214" level="INFO">DELETE Request : url=http://127.0.0.1:8000/api/delete_course/2 
+ path_url=/api/delete_course/2 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20230204 18:58:19.214" level="INFO">DELETE Response : url=http://127.0.0.1:8000/api/delete_course/2 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:19 GMT, Sat, 04 Feb 2023 12:58:19 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '42', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"Course - 2 details has been deleted successfully."} 
+ </msg>
+<msg timestamp="20230204 18:58:19.214" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:19.033" endtime="20230204 18:58:19.214"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:19.214" endtime="20230204 18:58:19.214"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:19.214" endtime="20230204 18:58:19.214"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:19.214" endtime="20230204 18:58:19.214"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:19.214" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:19.214" endtime="20230204 18:58:19.214"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${header_elements}</var>
+<arg>${response.headers}</arg>
+<arg>Host</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:19.214" level="INFO">${header_elements} = 127.0.0.1:8000</msg>
+<status status="PASS" starttime="20230204 18:58:19.214" endtime="20230204 18:58:19.214"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${header_elements}</arg>
+<arg>127.0.0.1:8000</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:19.214" endtime="20230204 18:58:19.214"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${message}</var>
+<arg>${response.json()}</arg>
+<arg>$.Message</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:19.245" level="INFO">${message} = ['Course - 2 details has been deleted successfully.']</msg>
+<status status="PASS" starttime="20230204 18:58:19.214" endtime="20230204 18:58:19.245"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${get_message}</var>
+<arg>${message}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:19.245" level="INFO">${get_message} = Course - 2 details has been deleted successfully.</msg>
+<status status="PASS" starttime="20230204 18:58:19.245" endtime="20230204 18:58:19.245"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${get_message}</arg>
+<arg>Course - ${course_param} details has been deleted successfully.</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:19.245" endtime="20230204 18:58:19.245"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:19.033" endtime="20230204 18:58:19.245"/>
+</test>
+<test id="s1-s1-s1-t19" name="TC18: Assign subjects to a particular course (POST HTTP REQUEST)" line="449">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:19.245" level="INFO">Creating Session using : alias=mysession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:19.245" endtime="20230204 18:58:19.245"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>sub_name=Robot Framework</arg>
+<arg>course_id=1</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:19.245" level="INFO">${body} = {'sub_name': 'Robot Framework', 'course_id': '1'}</msg>
+<status status="PASS" starttime="20230204 18:58:19.245" endtime="20230204 18:58:19.245"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:19.245" level="INFO">${header} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20230204 18:58:19.245" endtime="20230204 18:58:19.245"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${relative_uri_20}</arg>
+<arg>json=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:19.441" level="INFO">POST Request : url=http://127.0.0.1:8000/api/assign_subject 
+ path_url=/api/assign_subject 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '49'} 
+ body=b'{"sub_name": "Robot Framework", "course_id": "1"}' 
+ </msg>
+<msg timestamp="20230204 18:58:19.441" level="INFO">POST Response : url=http://127.0.0.1:8000/api/assign_subject 
+ status=201, reason=Created 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:19 GMT, Sat, 04 Feb 2023 12:58:19 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '41', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"Subject Robot Framework has been assigned successful.","Subject information":{"sub_name":"Robot Framework","course_id":"1","updated_at":"2023-02-04T12:58:19.000000Z","created_at":"2023-02-04T12:58:19.000000Z","id":3},"Course information":{"id":1,"course_name":"SQA Course 01","course_hours":"42 Hours","dept":"CSE","created_at":"2023-02-04T12:34:52.000000Z","updated_at":"2023-02-04T12:34:52.000000Z"},"Course id":"1","Success":true} 
+ </msg>
+<msg timestamp="20230204 18:58:19.441" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:19.245" endtime="20230204 18:58:19.441"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:19.441" endtime="20230204 18:58:19.441"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:19.441" endtime="20230204 18:58:19.441"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:19.441" endtime="20230204 18:58:19.441"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:19.441" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:19.441" endtime="20230204 18:58:19.441"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${cont_type}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:19.441" level="INFO">${cont_type} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:19.441" endtime="20230204 18:58:19.441"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${cont_type}</arg>
+<arg>application/json</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:19.456" endtime="20230204 18:58:19.456"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${subjName}</var>
+<arg>${response.json()}</arg>
+<arg>$["Subject information"].sub_name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:19.472" level="INFO">${subjName} = ['Robot Framework']</msg>
+<status status="PASS" starttime="20230204 18:58:19.456" endtime="20230204 18:58:19.472"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${capture_subjectNm}</var>
+<arg>${subjName}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:19.472" level="INFO">${capture_subjectNm} = Robot Framework</msg>
+<status status="PASS" starttime="20230204 18:58:19.472" endtime="20230204 18:58:19.472"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${capture_subjectNm}</arg>
+<arg>Robot Framework</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:19.472" endtime="20230204 18:58:19.472"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${message}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:19.472" level="INFO">${message} = {"Message":"Subject Robot Framework has been assigned successful.","Subject information":{"sub_name":"Robot Framework","course_id":"1","updated_at":"2023-02-04T12:58:19.000000Z","created_at":"2023-02-...</msg>
+<status status="PASS" starttime="20230204 18:58:19.472" endtime="20230204 18:58:19.472"/>
+</kw>
+<kw name="Should Contain Any" library="BuiltIn">
+<arg>${message}</arg>
+<arg>Subject ${capture_subjectNm} has been assigned successful.</arg>
+<doc>Fails if ``container`` does not contain any of the ``*items``.</doc>
+<status status="PASS" starttime="20230204 18:58:19.472" endtime="20230204 18:58:19.472"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${courseName}</var>
+<arg>${response.json()}</arg>
+<arg>$["Course information"].course_name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:19.503" level="INFO">${courseName} = ['SQA Course 01']</msg>
+<status status="PASS" starttime="20230204 18:58:19.472" endtime="20230204 18:58:19.503"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${capture_courseNm}</var>
+<arg>${courseName}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:19.510" level="INFO">${capture_courseNm} = SQA Course 01</msg>
+<status status="PASS" starttime="20230204 18:58:19.510" endtime="20230204 18:58:19.510"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${capture_courseNm}</arg>
+<arg>SQA Course 01</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:19.510" endtime="20230204 18:58:19.510"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:19.245" endtime="20230204 18:58:19.510"/>
+</test>
+<test id="s1-s1-s1-t20" name="TC19: View all offered subjects (GET REQUEST METHOD)" line="477">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:19.510" level="INFO">Creating Session using : alias=mysession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:19.510" endtime="20230204 18:58:19.510"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${resp}</var>
+<arg>mysession</arg>
+<arg>${relative_uri_21}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:19.660" level="INFO">GET Request : url=http://127.0.0.1:8000/api/available_subjects 
+ path_url=/api/available_subjects 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230204 18:58:19.660" level="INFO">GET Response : url=http://127.0.0.1:8000/api/available_subjects 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:19 GMT, Sat, 04 Feb 2023 12:58:19 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '40', 'Access-Control-Allow-Origin': '*'} 
+ body=[{"id":1,"sub_name":"REST Assured","course_id":1,"created_at":"2023-02-04 12:34:56","updated_at":"2023-02-04 12:34:56"},{"id":3,"sub_name":"Robot Framework","course_id":1,"created_at":"2023-02-04 12:58:19","updated_at":"2023-02-04 12:58:19"}] 
+ </msg>
+<msg timestamp="20230204 18:58:19.660" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:19.510" endtime="20230204 18:58:19.660"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:19.660" endtime="20230204 18:58:19.660"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:19.660" endtime="20230204 18:58:19.660"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:19.660" endtime="20230204 18:58:19.660"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${sts_code}</var>
+<arg>${resp.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:19.660" level="INFO">${sts_code} = 200</msg>
+<status status="PASS" starttime="20230204 18:58:19.660" endtime="20230204 18:58:19.660"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${sts_code}</arg>
+<arg>200</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:19.660" endtime="20230204 18:58:19.660"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${subjNm}</var>
+<arg>${resp.json()}</arg>
+<arg>$[1].sub_name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:19.692" level="INFO">${subjNm} = ['Robot Framework']</msg>
+<status status="PASS" starttime="20230204 18:58:19.660" endtime="20230204 18:58:19.692"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${subject_name}</var>
+<arg>${subjNm}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:19.692" level="INFO">${subject_name} = Robot Framework</msg>
+<status status="PASS" starttime="20230204 18:58:19.692" endtime="20230204 18:58:19.692"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${subject_name}</arg>
+<arg>Robot Framework</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:19.692" endtime="20230204 18:58:19.692"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${c_id}</var>
+<arg>${resp.json()}</arg>
+<arg>$[1].course_id</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:19.710" level="INFO">${c_id} = [1]</msg>
+<status status="PASS" starttime="20230204 18:58:19.692" endtime="20230204 18:58:19.710"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${cour_id}</var>
+<arg>${c_id}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:19.710" level="INFO">${cour_id} = 1</msg>
+<status status="PASS" starttime="20230204 18:58:19.710" endtime="20230204 18:58:19.710"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${cour_id}</arg>
+<arg>1</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:19.710" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:19.710" endtime="20230204 18:58:19.710"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${contentType}</var>
+<arg>${resp.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:19.710" level="INFO">${contentType} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:19.710" endtime="20230204 18:58:19.710"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${contentType}</arg>
+<arg>application/json</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:19.710" endtime="20230204 18:58:19.710"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:19.510" endtime="20230204 18:58:19.710"/>
+</test>
+<test id="s1-s1-s1-t21" name="TC20: Find number of offered subjects under a particular course and returns the associated details of subjects by course id (GET HTTP METHOD)" line="503">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:19.723" level="INFO">Creating Session using : alias=mysession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:19.723" endtime="20230204 18:58:19.723"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${resp}</var>
+<arg>mysession</arg>
+<arg>${relative_uri_22}${relative_uri_23}1</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:19.885" level="INFO">GET Request : url=http://127.0.0.1:8000/api/totalSubjects_by_cid?course_id=1 
+ path_url=/api/totalSubjects_by_cid?course_id=1 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230204 18:58:19.885" level="INFO">GET Response : url=http://127.0.0.1:8000/api/totalSubjects_by_cid?course_id=1 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:19 GMT, Sat, 04 Feb 2023 12:58:19 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '39', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"Offered subjects under course id: 1","Search results":[{"id":1,"sub_name":"REST Assured","course_id":1,"created_at":"2023-02-04T12:34:56.000000Z","updated_at":"2023-02-04T12:34:56.000000Z"},{"id":3,"sub_name":"Robot Framework","course_id":1,"created_at":"2023-02-04T12:58:19.000000Z","updated_at":"2023-02-04T12:58:19.000000Z"}],"Success":true} 
+ </msg>
+<msg timestamp="20230204 18:58:19.885" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:19.723" endtime="20230204 18:58:19.885"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:19.885" endtime="20230204 18:58:19.885"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:19.901" endtime="20230204 18:58:19.901"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:19.901" endtime="20230204 18:58:19.901"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:19.901" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:19.901" endtime="20230204 18:58:19.901"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${contentType}</var>
+<arg>${resp.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:19.901" level="INFO">${contentType} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:19.901" endtime="20230204 18:58:19.901"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${contentType}</arg>
+<arg>application/json</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230204 18:58:19.901" endtime="20230204 18:58:19.901"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${message}</var>
+<arg>${resp.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:19.901" level="INFO">${message} = {"Message":"Offered subjects under course id: 1","Search results":[{"id":1,"sub_name":"REST Assured","course_id":1,"created_at":"2023-02-04T12:34:56.000000Z","updated_at":"2023-02-04T12:34:56.000000Z"...</msg>
+<status status="PASS" starttime="20230204 18:58:19.901" endtime="20230204 18:58:19.901"/>
+</kw>
+<kw name="Should Contain Any" library="BuiltIn">
+<arg>${message}</arg>
+<arg>Offered subjects under course id: 1</arg>
+<doc>Fails if ``container`` does not contain any of the ``*items``.</doc>
+<status status="PASS" starttime="20230204 18:58:19.901" endtime="20230204 18:58:19.901"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${courseid}</var>
+<arg>${resp.json()}</arg>
+<arg>$["Search results"][0].course_id</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:19.932" level="INFO">${courseid} = [1]</msg>
+<status status="PASS" starttime="20230204 18:58:19.901" endtime="20230204 18:58:19.932"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${capture_courseID}</var>
+<arg>${courseid}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:19.932" level="INFO">${capture_courseID} = 1</msg>
+<status status="PASS" starttime="20230204 18:58:19.932" endtime="20230204 18:58:19.932"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${capture_courseID}</arg>
+<arg>1</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:19.932" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:19.932" endtime="20230204 18:58:19.932"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${subName}</var>
+<arg>${resp.json()}</arg>
+<arg>$["Search results"][0].sub_name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:19.948" level="INFO">${subName} = ['REST Assured']</msg>
+<status status="PASS" starttime="20230204 18:58:19.932" endtime="20230204 18:58:19.948"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${capture_subjectNm}</var>
+<arg>${subName}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:19.948" level="INFO">${capture_subjectNm} = REST Assured</msg>
+<status status="PASS" starttime="20230204 18:58:19.948" endtime="20230204 18:58:19.948"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${capture_subjectNm}</arg>
+<arg>REST Assured</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:19.948" endtime="20230204 18:58:19.948"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:19.710" endtime="20230204 18:58:19.948"/>
+</test>
+<test id="s1-s1-s1-t22" name="TC21: Update the subject information (PUT HTTP REQUEST)" line="528">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mySession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:19.948" level="INFO">Creating Session using : alias=mySession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:19.948" endtime="20230204 18:58:19.948"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{body}</var>
+<arg>sub_name=API Testing with postman</arg>
+<arg>course_id=1</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:19.948" level="INFO">&amp;{body} = { sub_name=API Testing with postman | course_id=1 }</msg>
+<status status="PASS" starttime="20230204 18:58:19.948" endtime="20230204 18:58:19.948"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{contentType}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:19.948" level="INFO">&amp;{contentType} = { Content-Type=application/json }</msg>
+<status status="PASS" starttime="20230204 18:58:19.948" endtime="20230204 18:58:19.948"/>
+</kw>
+<kw name="PUT On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mySession</arg>
+<arg>${relative_uri_24}${subj_param}</arg>
+<arg>json=${body}</arg>
+<arg>headers=${contentType}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:20.111" level="INFO">PUT Request : url=http://127.0.0.1:8000/api/update_subject_info/2 
+ path_url=/api/update_subject_info/2 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '58'} 
+ body=b'{"sub_name": "API Testing with postman", "course_id": "1"}' 
+ </msg>
+<msg timestamp="20230204 18:58:20.111" level="INFO">PUT Response : url=http://127.0.0.1:8000/api/update_subject_info/2 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:20 GMT, Sat, 04 Feb 2023 12:58:20 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '38', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"Successfully Updated.","Updated details of subject id: ":"2"} 
+ </msg>
+<msg timestamp="20230204 18:58:20.111" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:19.948" endtime="20230204 18:58:20.111"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:20.111" endtime="20230204 18:58:20.111"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:20.111" endtime="20230204 18:58:20.111"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:20.121" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:20.111" endtime="20230204 18:58:20.121"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${cont_type}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:20.121" level="INFO">${cont_type} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:20.121" endtime="20230204 18:58:20.121"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${cont_type}</arg>
+<arg>application/json</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:20.121" endtime="20230204 18:58:20.121"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${message}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:20.121" level="INFO">${message} = {"Message":"Successfully Updated.","Updated details of subject id: ":"2"}</msg>
+<status status="PASS" starttime="20230204 18:58:20.121" endtime="20230204 18:58:20.121"/>
+</kw>
+<kw name="Should Contain Any" library="BuiltIn">
+<arg>${message}</arg>
+<arg>Successfully Updated.</arg>
+<doc>Fails if ``container`` does not contain any of the ``*items``.</doc>
+<status status="PASS" starttime="20230204 18:58:20.121" endtime="20230204 18:58:20.121"/>
+</kw>
+<kw name="Should Contain" library="BuiltIn">
+<arg>${message}</arg>
+<arg>${subj_param}</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" starttime="20230204 18:58:20.121" endtime="20230204 18:58:20.121"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:19.948" endtime="20230204 18:58:20.121"/>
+</test>
+<test id="s1-s1-s1-t23" name="TC22: Delete subjects by their id (DELETE HTTP REQUEST)" line="548">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:20.121" level="INFO">Creating Session using : alias=mysession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:20.121" endtime="20230204 18:58:20.121"/>
+</kw>
+<kw name="DELETE On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${relative_uri_25}3</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:20.293" level="INFO">DELETE Request : url=http://127.0.0.1:8000/api/delete_subject/3 
+ path_url=/api/delete_subject/3 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20230204 18:58:20.293" level="INFO">DELETE Response : url=http://127.0.0.1:8000/api/delete_subject/3 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:20 GMT, Sat, 04 Feb 2023 12:58:20 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '37', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"3 nd Subject has been deleted successfully."} 
+ </msg>
+<msg timestamp="20230204 18:58:20.293" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:20.121" endtime="20230204 18:58:20.293"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:20.293" endtime="20230204 18:58:20.293"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:20.293" endtime="20230204 18:58:20.293"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:20.293" endtime="20230204 18:58:20.293"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:20.293" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:20.293" endtime="20230204 18:58:20.293"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${header_elements}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:20.293" level="INFO">${header_elements} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:20.293" endtime="20230204 18:58:20.293"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${header_elements}</arg>
+<arg>application/json</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:20.293" endtime="20230204 18:58:20.293"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${message}</var>
+<arg>${response.json()}</arg>
+<arg>$.Message</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:20.312" level="INFO">${message} = ['3 nd Subject has been deleted successfully.']</msg>
+<status status="PASS" starttime="20230204 18:58:20.293" endtime="20230204 18:58:20.312"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${get_message}</var>
+<arg>${message}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:20.312" level="INFO">${get_message} = 3 nd Subject has been deleted successfully.</msg>
+<status status="PASS" starttime="20230204 18:58:20.312" endtime="20230204 18:58:20.312"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${get_message}</arg>
+<arg>3 nd Subject has been deleted successfully.</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:20.312" endtime="20230204 18:58:20.312"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:20.121" endtime="20230204 18:58:20.312"/>
+</test>
+<test id="s1-s1-s1-t24" name="TC23: Post class schedule along with associated details (POST HTTP REQUEST)" line="570">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:20.326" level="INFO">Creating Session using : alias=mysession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:20.326" endtime="20230204 18:58:20.326"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${body}</var>
+<arg>course_id=1</arg>
+<arg>ins_id=1</arg>
+<arg>sub_id=1</arg>
+<arg>stu_id=1</arg>
+<arg>day=Sunday</arg>
+<arg>time_start=2023-02-04 03:42:00</arg>
+<arg>time_end=2023-02-04 05:00:00</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:20.326" level="INFO">${body} = {'course_id': '1', 'ins_id': '1', 'sub_id': '1', 'stu_id': '1', 'day': 'Sunday', 'time_start': '2023-02-04 03:42:00', 'time_end': '2023-02-04 05:00:00'}</msg>
+<status status="PASS" starttime="20230204 18:58:20.326" endtime="20230204 18:58:20.326"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>${header}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:20.326" level="INFO">${header} = {'Content-Type': 'application/json'}</msg>
+<status status="PASS" starttime="20230204 18:58:20.326" endtime="20230204 18:58:20.326"/>
+</kw>
+<kw name="POST On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${relative_uri_26}</arg>
+<arg>json=${body}</arg>
+<arg>headers=${header}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:21.132" level="INFO">POST Request : url=http://127.0.0.1:8000/api/post_schedule 
+ path_url=/api/post_schedule 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '152'} 
+ body=b'{"course_id": "1", "ins_id": "1", "sub_id": "1", "stu_id": "1", "day": "Sunday", "time_start": "2023-02-04 03:42:00", "time_end": "2023-02-04 05:00:00"}' 
+ </msg>
+<msg timestamp="20230204 18:58:21.132" level="INFO">POST Response : url=http://127.0.0.1:8000/api/post_schedule 
+ status=201, reason=Created 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:21 GMT, Sat, 04 Feb 2023 12:58:21 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '36', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"Schedule has been released at 2023-02-04 12:58:20.","Schedules information":{"course_id":"1","ins_id":"1","sub_id":"1","stu_id":"1","day":"Sunday","time_start":"2023-02-04 03:42:00","time_end":"2023-02-04 05:00:00","updated_at":"2023-02-04T12:58:20.000000Z","created_at":"2023-02-04T12:58:20.000000Z","id":1},"Success":true} 
+ </msg>
+<msg timestamp="20230204 18:58:21.132" level="INFO">${response} = &lt;Response [201]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:20.326" endtime="20230204 18:58:21.132"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:21.132" endtime="20230204 18:58:21.132"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:21.147" endtime="20230204 18:58:21.147"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:21.147" endtime="20230204 18:58:21.147"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>201</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:21.147" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:21.147" endtime="20230204 18:58:21.147"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${cont_type}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:21.147" level="INFO">${cont_type} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:21.147" endtime="20230204 18:58:21.147"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${cont_type}</arg>
+<arg>application/json</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:21.147" endtime="20230204 18:58:21.147"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${s_day}</var>
+<arg>${response.json()}</arg>
+<arg>$["Schedules information"].day</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:21.163" level="INFO">${s_day} = ['Sunday']</msg>
+<status status="PASS" starttime="20230204 18:58:21.147" endtime="20230204 18:58:21.163"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${capture_s_day}</var>
+<arg>${s_day}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:21.163" level="INFO">${capture_s_day} = Sunday</msg>
+<status status="PASS" starttime="20230204 18:58:21.163" endtime="20230204 18:58:21.163"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${capture_s_day}</arg>
+<arg>Sunday</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:21.163" endtime="20230204 18:58:21.163"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:20.325" endtime="20230204 18:58:21.163"/>
+</test>
+<test id="s1-s1-s1-t25" name="TC24: View all releases schedule and returns course, registered students and Instructor info (GET REQUEST METHOD)" line="592">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:21.179" level="INFO">Creating Session using : alias=mysession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:21.179" endtime="20230204 18:58:21.179"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${resp}</var>
+<arg>mysession</arg>
+<arg>${relative_uri_27}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:22.149" level="INFO">GET Request : url=http://127.0.0.1:8000/api/released_schedules 
+ path_url=/api/released_schedules 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230204 18:58:22.149" level="INFO">GET Response : url=http://127.0.0.1:8000/api/released_schedules 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:22 GMT, Sat, 04 Feb 2023 12:58:22 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '35', 'Access-Control-Allow-Origin': '*'} 
+ body=[{"id":1,"course_id":1,"ins_id":1,"sub_id":1,"stu_id":1,"day":"Sunday","time_start":"2023-02-04 03:42:00","time_end":"2023-02-04 05:00:00","created_at":"2023-02-04 12:58:20","updated_at":"2023-02-04 12:58:20"}] 
+ </msg>
+<msg timestamp="20230204 18:58:22.149" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:21.179" endtime="20230204 18:58:22.149"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:22.149" endtime="20230204 18:58:22.149"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:22.149" endtime="20230204 18:58:22.149"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:22.149" endtime="20230204 18:58:22.149"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${sts_code}</var>
+<arg>${resp.status_code}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:22.165" level="INFO">${sts_code} = 200</msg>
+<status status="PASS" starttime="20230204 18:58:22.149" endtime="20230204 18:58:22.165"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${sts_code}</arg>
+<arg>200</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:22.165" endtime="20230204 18:58:22.165"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${day}</var>
+<arg>${resp.json()}</arg>
+<arg>$[0].day</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:22.180" level="INFO">${day} = ['Sunday']</msg>
+<status status="PASS" starttime="20230204 18:58:22.165" endtime="20230204 18:58:22.180"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${capt_day}</var>
+<arg>${day}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:22.180" level="INFO">${capt_day} = Sunday</msg>
+<status status="PASS" starttime="20230204 18:58:22.180" endtime="20230204 18:58:22.180"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${capt_day}</arg>
+<arg>Sunday</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:22.180" endtime="20230204 18:58:22.180"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${c_id}</var>
+<arg>${resp.json()}</arg>
+<arg>$[0].course_id</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:22.216" level="INFO">${c_id} = [1]</msg>
+<status status="PASS" starttime="20230204 18:58:22.180" endtime="20230204 18:58:22.216"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${cour_id}</var>
+<arg>${c_id}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:22.216" level="INFO">${cour_id} = 1</msg>
+<status status="PASS" starttime="20230204 18:58:22.216" endtime="20230204 18:58:22.216"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${cour_id}</arg>
+<arg>1</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:22.216" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:22.216" endtime="20230204 18:58:22.216"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${contentType}</var>
+<arg>${resp.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:22.216" level="INFO">${contentType} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:22.216" endtime="20230204 18:58:22.216"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${contentType}</arg>
+<arg>application/json</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230204 18:58:22.216" endtime="20230204 18:58:22.216"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:21.179" endtime="20230204 18:58:22.216"/>
+</test>
+<test id="s1-s1-s1-t26" name="TC25: Fetch schedule info by subject id (GET HTTP METHOD)" line="618">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:22.216" level="INFO">Creating Session using : alias=mysession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:22.216" endtime="20230204 18:58:22.216"/>
+</kw>
+<kw name="GET On Session" library="RequestsLibrary">
+<var>${resp}</var>
+<arg>mysession</arg>
+<arg>${relative_uri_28}${relative_uri_29}${schedule_param}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:24.946" level="INFO">GET Request : url=http://127.0.0.1:8000/api/schedule_by_sub_id?id=1 
+ path_url=/api/schedule_by_sub_id?id=1 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg timestamp="20230204 18:58:24.946" level="INFO">GET Response : url=http://127.0.0.1:8000/api/schedule_by_sub_id?id=1 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:24 GMT, Sat, 04 Feb 2023 12:58:24 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '34', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"information of schedule id-1.","Schduler information":{"id":1,"course_id":1,"ins_id":1,"sub_id":1,"stu_id":1,"day":"Sunday","time_start":"2023-02-04 03:42:00","time_end":"2023-02-04 05:00:00","created_at":"2023-02-04T12:58:20.000000Z","updated_at":"2023-02-04T12:58:20.000000Z"},"Student id":1,"Student information":[{"id":1,"f_name":"Ahmed","gender":"Male","age":25,"email":"a23@gmail.com","mobile_no":"01534062340"}],"Course id":1,"Course information":{"Course details":{"id":1,"course_name":"SQA Course 01","course_hours":"42 Hours","dept":"CSE","created_at":"2023-02-04T12:34:52.000000Z","updated_at":"2023-02-04T12:34:52.000000Z"},"Subject id":1,"Subject details":{"id":1,"sub_name":"REST Assured","course_id":1,"created_at":"2023-02-04T12:34:56.000000Z","updated_at":"2023-02-04T12:34:56.000000Z"},"Course instructor id":1,"Instructor details":[{"id":1,"insf_name":"Tanvir","insl_name":"Taweb","ins_gender":"Male","ins_email":"tanvir@gmail.com","ins_mobile_no":"01234512312"}]},"Success":true} 
+ </msg>
+<msg timestamp="20230204 18:58:24.946" level="INFO">${resp} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:22.216" endtime="20230204 18:58:24.946"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:24.946" endtime="20230204 18:58:24.946"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:24.946" endtime="20230204 18:58:24.946"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${resp.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:24.946" endtime="20230204 18:58:24.946"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${resp.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:24.946" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:24.946" endtime="20230204 18:58:24.946"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${contentType}</var>
+<arg>${resp.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:24.946" level="INFO">${contentType} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:24.946" endtime="20230204 18:58:24.946"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${contentType}</arg>
+<arg>application/json</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230204 18:58:24.946" endtime="20230204 18:58:24.946"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${message}</var>
+<arg>${resp.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:24.946" level="INFO">${message} = {"Message":"information of schedule id-1.","Schduler information":{"id":1,"course_id":1,"ins_id":1,"sub_id":1,"stu_id":1,"day":"Sunday","time_start":"2023-02-04 03:42:00","time_end":"2023-02-04 05:00:...</msg>
+<status status="PASS" starttime="20230204 18:58:24.946" endtime="20230204 18:58:24.946"/>
+</kw>
+<kw name="Should Contain Any" library="BuiltIn">
+<arg>${message}</arg>
+<arg>information of schedule id-${schedule_param}.</arg>
+<doc>Fails if ``container`` does not contain any of the ``*items``.</doc>
+<status status="PASS" starttime="20230204 18:58:24.946" endtime="20230204 18:58:24.946"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${courseNM}</var>
+<arg>${resp.json()}</arg>
+<arg>$["Course information"]["Course details"].course_name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:24.977" level="INFO">${courseNM} = ['SQA Course 01']</msg>
+<status status="PASS" starttime="20230204 18:58:24.946" endtime="20230204 18:58:24.977"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${capture_courseNm}</var>
+<arg>${courseNM}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:25.276" level="INFO">${capture_courseNm} = SQA Course 01</msg>
+<status status="PASS" starttime="20230204 18:58:25.276" endtime="20230204 18:58:25.276"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${capture_courseNm}</arg>
+<arg>SQA Course 01</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230204 18:58:25.276" endtime="20230204 18:58:25.276"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${day}</var>
+<arg>${resp.json()}</arg>
+<arg>$["Schduler information"].day</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:25.307" level="INFO">${day} = ['Sunday']</msg>
+<status status="PASS" starttime="20230204 18:58:25.276" endtime="20230204 18:58:25.307"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${capture_day}</var>
+<arg>${day}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:25.307" level="INFO">${capture_day} = Sunday</msg>
+<status status="PASS" starttime="20230204 18:58:25.307" endtime="20230204 18:58:25.307"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${capture_day}</arg>
+<arg>Sunday</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:25.307" endtime="20230204 18:58:25.307"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${subjectNM}</var>
+<arg>${resp.json()}</arg>
+<arg>$["Course information"]["Subject details"].sub_name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:25.338" level="INFO">${subjectNM} = ['REST Assured']</msg>
+<status status="PASS" starttime="20230204 18:58:25.307" endtime="20230204 18:58:25.338"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${capture_subNm}</var>
+<arg>${subjectNM}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:25.338" level="INFO">${capture_subNm} = REST Assured</msg>
+<status status="PASS" starttime="20230204 18:58:25.338" endtime="20230204 18:58:25.338"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${capture_subNm}</arg>
+<arg>REST Assured</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230204 18:58:25.338" endtime="20230204 18:58:25.338"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${ins_name}</var>
+<arg>${resp.json()}</arg>
+<arg>$["Course information"]["Instructor details"][0].insf_name</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:25.354" level="INFO">${ins_name} = ['Tanvir']</msg>
+<status status="PASS" starttime="20230204 18:58:25.338" endtime="20230204 18:58:25.354"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${capture_ins_nm}</var>
+<arg>${ins_name}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:25.354" level="INFO">${capture_ins_nm} = Tanvir</msg>
+<status status="PASS" starttime="20230204 18:58:25.354" endtime="20230204 18:58:25.354"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${capture_ins_nm}</arg>
+<arg>Tanvir</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" starttime="20230204 18:58:25.354" endtime="20230204 18:58:25.354"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:22.216" endtime="20230204 18:58:25.354"/>
+</test>
+<test id="s1-s1-s1-t27" name="TC26: Update information of class schedule (PUT HTTP REQUEST)" line="651">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mySession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:25.354" level="INFO">Creating Session using : alias=mySession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:25.354" endtime="20230204 18:58:25.354"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{body}</var>
+<arg>course_id=1</arg>
+<arg>ins_id=1</arg>
+<arg>sub_id=1</arg>
+<arg>stu_id=1</arg>
+<arg>day=Friday</arg>
+<arg>time_start=2023-02-06 02:00:02</arg>
+<arg>time_end=2023-02-06 04:00:03</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:25.354" level="INFO">&amp;{body} = { course_id=1 | ins_id=1 | sub_id=1 | stu_id=1 | day=Friday | time_start=2023-02-06 02:00:02 | time_end=2023-02-06 04:00:03 }</msg>
+<status status="PASS" starttime="20230204 18:58:25.354" endtime="20230204 18:58:25.354"/>
+</kw>
+<kw name="Create Dictionary" library="BuiltIn">
+<var>&amp;{contentType}</var>
+<arg>Content-Type=application/json</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<msg timestamp="20230204 18:58:25.354" level="INFO">&amp;{contentType} = { Content-Type=application/json }</msg>
+<status status="PASS" starttime="20230204 18:58:25.354" endtime="20230204 18:58:25.354"/>
+</kw>
+<kw name="PUT On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mySession</arg>
+<arg>${relative_uri_30}${schedule_param}</arg>
+<arg>json=${body}</arg>
+<arg>headers=${contentType}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:27.355" level="INFO">PUT Request : url=http://127.0.0.1:8000/api/update_scheduler_info/1 
+ path_url=/api/update_scheduler_info/1 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Type': 'application/json', 'Content-Length': '152'} 
+ body=b'{"course_id": "1", "ins_id": "1", "sub_id": "1", "stu_id": "1", "day": "Friday", "time_start": "2023-02-06 02:00:02", "time_end": "2023-02-06 04:00:03"}' 
+ </msg>
+<msg timestamp="20230204 18:58:27.355" level="INFO">PUT Response : url=http://127.0.0.1:8000/api/update_scheduler_info/1 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:27 GMT, Sat, 04 Feb 2023 12:58:27 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '33', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"Schedule 1 updated successfully.","Success: ":true} 
+ </msg>
+<msg timestamp="20230204 18:58:27.355" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:25.370" endtime="20230204 18:58:27.355"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:27.355" endtime="20230204 18:58:27.355"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:27.355" endtime="20230204 18:58:27.371"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:27.371" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:27.371" endtime="20230204 18:58:27.371"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${cont_type}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:27.371" level="INFO">${cont_type} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:27.371" endtime="20230204 18:58:27.371"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${cont_type}</arg>
+<arg>application/json</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:27.371" endtime="20230204 18:58:27.371"/>
+</kw>
+<kw name="Convert To String" library="BuiltIn">
+<var>${message}</var>
+<arg>${response.content}</arg>
+<doc>Converts the given item to a Unicode string.</doc>
+<msg timestamp="20230204 18:58:27.371" level="INFO">${message} = {"Message":"Schedule 1 updated successfully.","Success: ":true}</msg>
+<status status="PASS" starttime="20230204 18:58:27.371" endtime="20230204 18:58:27.371"/>
+</kw>
+<kw name="Should Contain Any" library="BuiltIn">
+<arg>${message}</arg>
+<arg>Schedule ${schedule_param} updated successfully.</arg>
+<doc>Fails if ``container`` does not contain any of the ``*items``.</doc>
+<status status="PASS" starttime="20230204 18:58:27.371" endtime="20230204 18:58:27.371"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:25.354" endtime="20230204 18:58:27.371"/>
+</test>
+<test id="s1-s1-s1-t28" name="TC27: Cancel class schedule by schedule id (DELETE HTTP REQUEST)" line="670">
+<kw name="Create Session" library="RequestsLibrary">
+<arg>mysession</arg>
+<arg>${base_url}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<msg timestamp="20230204 18:58:27.371" level="INFO">Creating Session using : alias=mysession, url=http://127.0.0.1:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<status status="PASS" starttime="20230204 18:58:27.371" endtime="20230204 18:58:27.371"/>
+</kw>
+<kw name="DELETE On Session" library="RequestsLibrary">
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${relative_uri_31}${schedule_param}</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<msg timestamp="20230204 18:58:28.401" level="INFO">DELETE Request : url=http://127.0.0.1:8000/api/delete_schedule/1 
+ path_url=/api/delete_schedule/1 
+ headers={'User-Agent': 'python-requests/2.28.2', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg timestamp="20230204 18:58:28.401" level="INFO">DELETE Response : url=http://127.0.0.1:8000/api/delete_schedule/1 
+ status=200, reason=OK 
+ headers={'Host': '127.0.0.1:8000', 'Date': 'Sat, 04 Feb 2023 12:58:28 GMT, Sat, 04 Feb 2023 12:58:28 GMT', 'Connection': 'close', 'X-Powered-By': 'PHP/8.2.0', 'Cache-Control': 'no-cache, private', 'Content-Type': 'application/json', 'X-RateLimit-Limit': '60', 'X-RateLimit-Remaining': '32', 'Access-Control-Allow-Origin': '*'} 
+ body={"Message":"Scheduler 1 information has been deleted successfully."} 
+ </msg>
+<msg timestamp="20230204 18:58:28.401" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:27.371" endtime="20230204 18:58:28.401"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:28.401" endtime="20230204 18:58:28.401"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.headers}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:28.401" endtime="20230204 18:58:28.401"/>
+</kw>
+<kw name="Log To Console" library="BuiltIn">
+<arg>${response.content}</arg>
+<doc>Logs the given message to the console.</doc>
+<status status="PASS" starttime="20230204 18:58:28.401" endtime="20230204 18:58:28.401"/>
+</kw>
+<kw name="Should Be Equal As Strings" library="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<msg timestamp="20230204 18:58:28.401" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<status status="PASS" starttime="20230204 18:58:28.401" endtime="20230204 18:58:28.401"/>
+</kw>
+<kw name="Get From Dictionary" library="Collections">
+<var>${header_elements}</var>
+<arg>${response.headers}</arg>
+<arg>Content-Type</arg>
+<doc>Returns a value from the given ``dictionary`` based on the given ``key``.</doc>
+<msg timestamp="20230204 18:58:28.417" level="INFO">${header_elements} = application/json</msg>
+<status status="PASS" starttime="20230204 18:58:28.401" endtime="20230204 18:58:28.417"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${header_elements}</arg>
+<arg>application/json</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:28.417" endtime="20230204 18:58:28.417"/>
+</kw>
+<kw name="Get Value From Json" library="JSONLibrary">
+<var>${message}</var>
+<arg>${response.json()}</arg>
+<arg>$.Message</arg>
+<doc>Get Value From JSON using JSONPath</doc>
+<msg timestamp="20230204 18:58:28.448" level="INFO">${message} = ['Scheduler 1 information has been deleted successfully.']</msg>
+<status status="PASS" starttime="20230204 18:58:28.417" endtime="20230204 18:58:28.448"/>
+</kw>
+<kw name="Get From List" library="Collections">
+<var>${get_message}</var>
+<arg>${message}</arg>
+<arg>0</arg>
+<doc>Returns the value specified with an ``index`` from ``list``.</doc>
+<msg timestamp="20230204 18:58:28.448" level="INFO">${get_message} = Scheduler 1 information has been deleted successfully.</msg>
+<status status="PASS" starttime="20230204 18:58:28.448" endtime="20230204 18:58:28.448"/>
+</kw>
+<kw name="Should Be Equal" library="BuiltIn">
+<arg>${get_message}</arg>
+<arg>Scheduler ${schedule_param} information has been deleted successfully.</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" starttime="20230204 18:58:28.448" endtime="20230204 18:58:28.448"/>
+</kw>
+<status status="PASS" starttime="20230204 18:58:27.371" endtime="20230204 18:58:28.448"/>
+</test>
+<status status="PASS" starttime="20230204 18:58:12.072" endtime="20230204 18:58:28.448"/>
+</suite>
+<status status="PASS" starttime="20230204 18:58:12.072" endtime="20230204 18:58:28.464"/>
+</suite>
+<status status="PASS" starttime="20230204 18:58:12.056" endtime="20230204 18:58:28.464"/>
+</suite>
+<statistics>
+<total>
+<stat pass="28" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="28" fail="0" skip="0" id="s1" name="InstituteManagementAPI">InstituteManagementAPI</stat>
+<stat pass="28" fail="0" skip="0" id="s1-s1" name="InstituteManagementAPI Automation TCs">InstituteManagementAPI.InstituteManagementAPI Automation TCs</stat>
+<stat pass="28" fail="0" skip="0" id="s1-s1-s1" name="TCs">InstituteManagementAPI.InstituteManagementAPI Automation TCs.TCs</stat>
+</suite>
+</statistics>
+<errors>
+<msg timestamp="20230204 18:58:17.106" level="WARN">Keyword 'RequestsLibrary.To Json' is deprecated. Please use ${resp.json()} instead. Have a look at the improved HTML output as pretty printing replacement.</msg>
+<msg timestamp="20230204 18:58:19.245" level="WARN">Multiple tests with name 'TC18: Assign subjects to a particular course (POST HTTP REQUEST)' executed in suite 'InstituteManagementAPI.InstituteManagementAPI Automation TCs.TCs'.</msg>
+</errors>
+</robot>
