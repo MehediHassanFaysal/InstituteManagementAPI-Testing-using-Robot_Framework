@@ -1,7 +1,7 @@
 ## API automation testing using Robot framework
 ### Project: InstituteManagement-API
-  - Type of testing: API
-  - Category: Automation
+  - Type of testing: Automation
+  - Category: API testing
   - Language: Python
   - Framework: Robot framework
   - Execution period: 02-Feb-2023 to 04-Feb-2023
